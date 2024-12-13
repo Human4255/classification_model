@@ -38,6 +38,8 @@ g3adapt= cv.adaptiveThreshold(gray_img,255,\
 contours,hieracy = cv.findContours(
    g3adapt,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
 contours = tuple(contour for contour in contours  if cv.contourArea(contour)>3)
+
+
 print(len(contours))
 testimg = cv.drawContours(timg.copy(), contours, -1, (0, 0, 255))
 cv.imshow("test", testimg)
