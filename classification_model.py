@@ -66,7 +66,30 @@ def ReadImage(rpath):
             print(".",end="")
         print()
 
-ReadImage(r"D:\imgs")#데이터증강호출
+def Load_directory(rootpath): #{label:[이미지리스트]}
+    f_lists = os.listdir(rootpath)
+    print(f_lists)
+    y_labels = []
+    x_files = []
+    for label,fpath in enumerate(f_lists):
+        print(".", end="")
+        f_name = r"{}\{}".format(rootpath,fpath)
+        f_names = os.listdir(f_name)
+        #print(f_names)
+        for p in f_names:
+            y_labels.append(label)
+            f_img = cv.imread(r"{}\{}".format(f_name,p))
+            f_img = cv.cvtColor(f_img,cv.COLOR_BGR2RGB)
+            f_img = cv.resize(f_img,(64,64))
+            x_files.append(f_img)
+
+        # print(len(data_sets[label]), end="")
+        # print(data_sets[label][0][128][128]) #픽셀값 확인 -> 3채널의 픽셀로 나옴
+        # print(type(data_sets.values()))
+    return f_lists, np.array(list(y_labels)), np.array(list(x_files))
+
+if __name__ == "__main__": #이게 메인함수라면 ReadImage, 다른파일에서 받을경우 이름으로만 받는대
+    ReadImage(r"D:\imgs")#데이터증강호출
 
 np.random.seed(SEED)
 tf.random.set_seed(SEED)
