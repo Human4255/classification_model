@@ -11,7 +11,7 @@ classification_model.py : def imageAugment_sub 디렉터리 내의 이미지를 
                           def GetTrainData Load_directory_sub함수를 호출하여 정답파일을 기준으로 훈련데이터(80%), 테스트데이터(20%)를 랜덤하게 분리
                        
 construct_model.py : 훈련데이터의 minmax표준화, 정답데이터의 원핫인코딩을 수행후, 이미지와 정답파일의 매칭을 확인
-                    Sequential모델로 구성된 CNN을 구현하고(다중분류) 훈련을 실행+조기종료 콜백함수 추가 후 훈련결과와 모델을 파일로 저장
+                     Sequential모델로 구성된 CNN을 구현하고(다중분류) 훈련을 실행+조기종료 콜백함수 추가 후 훈련결과와 모델을 파일로 저장
                     +) max-acc-baseline기준이상, min-loss-baseline기준이하
 
 classfication_analize.py : 테스트데이터와 테스트정답파일을 로딩한 후 훈련이 완료된 모델과 훈련결과를 로딩하여
