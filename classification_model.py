@@ -7,6 +7,7 @@ import matplotlib as plt
 from test_cv2_2 import RemoveBackgroundFolder,SingleRemoveBackground
 from tensorflow.keras import Sequential, Input
 from tensorflow.keras.layers import Dense, Dropout, Conv2D, MaxPool2D
+from sklearn.model_selection import train_test_split
 
 SEED = 10
 # pre_model = Sequential()
@@ -66,7 +67,7 @@ def ReadImage(rpath):
             print(".",end="")
         print()
 
-def Load_directory(rootpath): #{label:[이미지리스트]}
+def Load_directory_sub(rootpath): #{label:[이미지리스트]}
     f_lists = os.listdir(rootpath)
     print(f_lists)
     y_labels = []
@@ -87,6 +88,27 @@ def Load_directory(rootpath): #{label:[이미지리스트]}
         # print(data_sets[label][0][128][128]) #픽셀값 확인 -> 3채널의 픽셀로 나옴
         # print(type(data_sets.values()))
     return f_lists, np.array(list(y_labels)), np.array(list(x_files))
+
+#훈련,검증데이터 그림그리기
+def GetTrainData(dpath):
+    label_lists, y_data, x_data = Load_directory_sub(dpath)  # 정답
+    print(y_data.shape)  # (3153,)
+    print(x_data.shape)  # (3153, 256, 256, 3)
+    print(len(label_lists))  # 11
+    print(label_lists[0])  # Bear
+
+    # suffle
+    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.2, random_state=10, stratify=y_data)
+    print(x_train.shape)  # (2522, 256, 256, 3)
+    print(y_train.shape)  # (2522,)
+    print(x_test.shape)  # (631, 256, 256, 3)
+    print(y_test.shape)  # (631,)
+    print(y_train[:10])  # [4 3 0 5 1 4 9 6 9 9]
+    return {"label_lists":label_lists,
+            "train":(x_train,y_train),
+            "test":(x_test,y_test) } #
+
+
 
 if __name__ == "__main__": #이게 메인함수라면 ReadImage, 다른파일에서 받을경우 이름으로만 받는대
     ReadImage(r"D:\imgs")#데이터증강호출
