@@ -55,6 +55,7 @@ model.add(Conv2D(filters=256,kernel_size=5,strides=2,padding="same",activation="
 model.add(MaxPool2D(pool_size=(3,2),padding="same"))
 model.add(Dropout(0.3))
 model.add(Flatten())
+
 model.add(Dropout(0.4))
 model.add(Dense(256,activation="relu"))
 model.add(Dropout(0.4))
