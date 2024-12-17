@@ -11,7 +11,7 @@ import uuid
 import re
 
 
-def get_naver(search_datas,cnt_count):
+def get_naver(search_datas,save_directory,cnt_count):
     #print(search_datas)
     #print(cnt_count)
     for searchKeyword,keyword in search_datas:
@@ -19,7 +19,7 @@ def get_naver(search_datas,cnt_count):
        keyword = keyword.strip()
        time.sleep(5)
        #네이버 접속
-       driver = webdriver.Chrome()        #
+       driver = webdriver.Chrome()
        driver.get(r"https://search.naver.com/search.naver?ssc=tab.image.all&where=image&sm=tab_jum&query={}".format(searchKeyword))
        #class = image_group 이미지 컨테이너
        # img > src 이미지 경로
@@ -62,9 +62,7 @@ def get_naver(search_datas,cnt_count):
            if int(contentLen)<5100:
                continue
            simg = img_site.content
-           save_path = f"d:\\imgs\\{keyword}\\" #d:\\imgs\\naver\\{keyword}\\
-           if not os.path.exists(r"d:\imgs"):
-               os.mkdir(r"d:\imgs")
+           save_path = f"{save_directory}\\{keyword}\\" #d:\\imgs\\naver\\{keyword}\\
            if not os.path.exists(save_path):
                os.mkdir(save_path)
            expandfile = u.split(".")[-1]
@@ -77,7 +75,8 @@ def get_naver(search_datas,cnt_count):
        print("네이버에서 {} 개를 받았습니다.".format(icount))
        driver.quit()
 
-
+if __name__=="__main__":
+    print("Craw_image_running 파일에서 실행하세요")
 
 
 
