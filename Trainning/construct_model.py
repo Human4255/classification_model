@@ -3,10 +3,12 @@ os.environ['TF_ENABLE_ONEDNN_OPTS']='0'
 import numpy as np
 import random
 import pickle
+import seaborn
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from tensorflow.keras import Sequential, Input
 from tensorflow.keras.layers import Dense, Dropout, Conv2D, MaxPool2D, Flatten
+from tensorflow.keras.optimizers import Adam
 from sklearn.metrics import confusion_matrix, classification_report
 from seaborn import heatmap
 
@@ -53,7 +55,8 @@ def Train_fit_run(train_count,label_lists,x_train,y_train,x_test,y_test):
     model.add(Dense(32,activation="relu"))
     model.add(Dense(10,activation="softmax"))
     model.summary()
-    model.compile(optimizer="adam",loss="categorical_crossentropy",metrics=["acc"])
+    optimizer = Adam(learning_rate=0.0001) #과대적합이 보여 learning_rate조절
+    model.compile(optimizer=optimizer,loss="categorical_crossentropy",metrics=["acc"])
     #max-acc-baseline기준이상, min-loss-baseline기준이하
     cb = tf.keras.callbacks.EarlyStopping(monitor='val_acc',patience=10,verbose=1,mode='max',restore_best_weights=True)
     fit_his = model.fit(x_train,y_train,batch_size=100,validation_data=(x_test,y_test),epochs=train_count,callbacks=[cb])
@@ -103,7 +106,6 @@ def Train_fit_run(train_count,label_lists,x_train,y_train,x_test,y_test):
 
     input("창을 닫고 엔터키를 눌러주세요, 최종훈련결과 리포트를 출력하겠습니다.")
     print(classification_report(y_conv_true,y_conv_pred))
-
     # 히트맵-혼돈행렬넣어주기
-    # seaborn.heatmap(cm, cmap="Blues", annot=True, fmt=".1f", xticklabels=label_lists, yticklabels=label_lists)
-    # plt.show()
+    seaborn.heatmap(cm, cmap="Blues", annot=True, fmt=".1f", xticklabels=label_lists, yticklabels=label_lists)
+    plt.show()

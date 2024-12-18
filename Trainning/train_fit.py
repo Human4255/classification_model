@@ -22,7 +22,7 @@ if userSel !='0':
             "입력: ")
     if user_Sel!='0' and len(x_train)>0 and len(y_train)>0 and len(x_test)>0 and len(y_test)>0:
         input("엔터키를 누르면 10개의 이미지를 확인합니다. 정답과 일치하는지 확인하세요\n"
-                "창을 닫드면 훈련이 시작됩니다.")
+                "창을 닫으면 훈련이 시작됩니다.")
         print("훈련을 시작합니다...")
         Train_fit_run(int(user_Sel), label_lists, x_train, y_train, x_test, y_test)
     elif user_Sel=='0':
