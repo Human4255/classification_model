@@ -8,6 +8,7 @@ cnt_count=None
 search_datas=None
 save_directory=""
 
+
 while True:
    keywords = None
    searchKeywords = None

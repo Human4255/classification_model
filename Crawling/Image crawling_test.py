@@ -29,7 +29,7 @@ src_img = img.get_attribute(("src"))
 res = requests.get(src_img)
 #print((res))
 #print(res.content) #다운로드 받은 이미지가 여기로 들어감
-with open("save_img/test.png","wb") as fp: #글씨, 실행파일 빼고 다 바이너리임
+with open("../save_img/test.png", "wb") as fp: #글씨, 실행파일 빼고 다 바이너리임
     fp.write(res.content)
 time.sleep(600)
 #print(driver) #가상키보드, 가상마우스 작동할 수 있는 크롬드라이버

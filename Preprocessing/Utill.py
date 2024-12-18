@@ -4,9 +4,6 @@ import tensorflow as tf
 import cv2 as cv
 import numpy as np
 import matplotlib as plt
-from test_cv2_2 import RemoveBackgroundFolder,SingleRemoveBackground
-from tensorflow.keras import Sequential, Input
-from tensorflow.keras.layers import Dense, Dropout, Conv2D, MaxPool2D
 from sklearn.model_selection import train_test_split
 
 SEED = 10
@@ -50,7 +47,7 @@ def imageAugment_sub(timg):
     testimg1 = pre_model(testimg1)
     return testimg1.numpy().astype(np.uint8)
 
-def ReadImage(rpath):
+def ReadImage(rpath,get_count):
     cnt = 0
     f_lists = os.listdir(rpath)
     #폴더 내 폴더 불러오기
@@ -60,7 +57,7 @@ def ReadImage(rpath):
         for f_name in f_names:
             timg = cv.imread(rpath + "\\" + folder +"\\"+ f_name)
             timg = cv.resize(timg,(256,256))
-            for ix in range(5):
+            for ix in range(get_count):
                 arg_img = imageAugment_sub(timg)
                 cv.imwrite(rpath + "\\" + folder +"\\"+ str(cnt)+f_name,arg_img)
                 cnt+=1 #파일이름 중복 피하기
@@ -89,6 +86,7 @@ def Load_directory_sub(rootpath): #{label:[이미지리스트]}
         # print(type(data_sets.values()))
     return f_lists, np.array(list(y_labels)), np.array(list(x_files))
 
+
 #훈련,검증데이터 그림그리기
 def GetTrainData(dpath):
     label_lists, y_data, x_data = Load_directory_sub(dpath)  # 정답
@@ -99,20 +97,25 @@ def GetTrainData(dpath):
 
     # suffle
     x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.2, random_state=10, stratify=y_data)
-    print(x_train.shape)  # (2522, 256, 256, 3)
-    print(y_train.shape)  # (2522,)
-    print(x_test.shape)  # (631, 256, 256, 3)
-    print(y_test.shape)  # (631,)
-    print(y_train[:10])  # [4 3 0 5 1 4 9 6 9 9]
+    #정규화-표준화와 원핫인코딩
+    x_train = x_train/255.
+    x_test = x_test/255.
+    print("훈련파일: ",x_train.shape)
+    print("훈련정답: ",y_train.shape)
+    print("테스트파일: ",x_test.shape)
+    print("테스트정답: ",y_test.shape)
+    print("훈련파일80%, 테스트파일20%를 suffle후 분할이 완료되었습니다.")
+    # print(x_train.shape)  # (2522, 256, 256, 3)
+    # print(y_train.shape)  # (2522,)
+    # print(x_test.shape)  # (631, 256, 256, 3)
+    # print(y_test.shape)  # (631,)
+    # print(y_train[:10])  # [4 3 0 5 1 4 9 6 9 9]
     return {"label_lists":label_lists,
             "train":(x_train,y_train),
-            "test":(x_test,y_test) } #
-
-
+            "test":(x_test,y_test) }
 
 if __name__ == "__main__": #이게 메인함수라면 ReadImage, 다른파일에서 받을경우 이름으로만 받는대
-    ReadImage(r"D:\imgs")#데이터증강호출
+    print("preprocessing_running 파일에서 실행하세요")
 
 np.random.seed(SEED)
 tf.random.set_seed(SEED)
-
