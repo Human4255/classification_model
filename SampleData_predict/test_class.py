@@ -20,7 +20,8 @@ print("라벨리스트확인:",label_list)
 sample_data = input("라벨리스트가 불러와 졌는지 확인후\n"
                     "샘플데이터의 파일경로와 파일명을 지정해주세요\n")
 
-origin_img = cv.imread(sample_data,cv.COLOR_BGR2RGB)
+origin_img = cv.imread(sample_data)
+origin_img = cv.cvtColor(origin_img,cv.COLOR_BGR2RGB)
 origin_img = cv.resize(origin_img,(256,256))
 rembg_img = SingleRemoveBackground(r"{}".format(sample_data))
 rembg_img = getPred_processing(rembg_img)
