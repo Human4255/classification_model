@@ -17,6 +17,8 @@
         height:15vw;border:1px solid gray;
         opacity:0.7;border-radius:5px
       }
+      .top-cont{height:80%;background:gray}
+      .bottom-cont{height:20%;background:red}
     </style>
     <script>
       $(()=>{
@@ -26,6 +28,15 @@
         $("#view_menu").on("mouseout",()=>{
           $("#view_menu").css("display","none")
         })
+        let inHtml = ""
+        for (let i=0;i<12;i++){
+          inHtml+= '
+          <div class="content">
+          <div class="top-cont"></div>
+          <div class="bottom-cont"></div>
+        </div>'
+        }
+        $("#container").html(inHtml)
       })
     </script>
   </head>
@@ -41,20 +52,7 @@
       view git source
       </a>
     </p>
-    <div id="container">
-      <div class="content">1</div>
-      <div class="content">2</div>
-      <div class="content">3</div>
-      <div class="content">4</div>
-      <div class="content">5</div>
-      <div class="content">6</div>
-      <div class="content">7</div>
-      <div class="content">8</div>
-      <div class="content">9</div>
-      <div class="content">10</div>
-      <div class="content">11</div>
-      <div class="content">12</div>
-    </div>
+    <div id="container"></div>
     <img src="https://drive.google.com/thumbnail?id=1hRL9FK9R_d0OroI14MVyDTDryGWIpPRM" alt="Image from Google Drive">
     <hr style="margin:0.7vw 1vw">
     <footer style="text-align:center">
