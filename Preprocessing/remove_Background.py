@@ -40,8 +40,9 @@ def SingleRemoveBackground(imagePathName): #단일제거
     timg = cv.imread(imagePathName)
     timg = cv.resize(timg, (256, 256))
     rmbg_img = remove(timg)
-    cv.imwrite(imagePathName,rmbg_img)
+    #cv.imwrite(imagePathName,rmbg_img)
     print("배경이미지 제거가 완료되었씁니다.")
+    return rmbg_img
 
 if __name__ == "__main__": #이게 메인함수라면 ReadImage, 다른파일에서 받을경우 이름으로만 받는대
     print("preprocessing_running 파일에서 실행하세요")

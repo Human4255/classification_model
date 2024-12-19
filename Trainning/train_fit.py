@@ -10,6 +10,7 @@ userSel = input("디렉터리에서 훈련파일을 생성하여 가져오겠습
 
 if userSel !='0':
     data_sets = GetTrainData(r"{}".format(userSel))
+
     label_lists = data_sets["label_lists"]
     x_train,y_train = data_sets["train"]
     x_test,y_test = data_sets["test"]

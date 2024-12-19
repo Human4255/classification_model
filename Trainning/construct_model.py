@@ -1,4 +1,5 @@
 import os
+from Preprocessing.Utill import SaveConfig
 os.environ['TF_ENABLE_ONEDNN_OPTS']='0'
 import numpy as np
 import random
@@ -11,15 +12,21 @@ from tensorflow.keras.layers import Dense, Dropout, Conv2D, MaxPool2D, Flatten
 from tensorflow.keras.optimizers import Adam
 from sklearn.metrics import confusion_matrix, classification_report
 from seaborn import heatmap
+from Preprocessing.Utill import SaveConfig
 
 # image confirm
 def Train_fit_run(train_count,label_lists,x_train,y_train,x_test,y_test):
     rlist = [random.randint(0,len(x_train)-1) for _ in range(10)]
     print(rlist)
+    curpath = os.path.dirname(os.path.abspath(__file__))
+    path_list = curpath.split("\\")[:-1]
+    rootpath = "\\".join(path_list)
+    print(y_train[0])
+    SaveConfig(label_lists,rootpath)
     for ix,num in enumerate(rlist):
         plt.subplot(2,5,ix+1)
-        plt.imshow(x_train[ix])
-        plt.title(label_lists[np.argmax(y_train[ix])])
+        plt.imshow(x_train[num])
+        plt.title(label_lists[np.argmax(y_train[num])])
         plt.xticks([])
         plt.yticks([])
     plt.show()
@@ -28,8 +35,6 @@ def Train_fit_run(train_count,label_lists,x_train,y_train,x_test,y_test):
     #onehot encoding
     y_train = tf.cast(y_train, tf.int32)
     y_test = tf.cast(y_test, tf.int32)
-    y_train = tf.one_hot(y_train,10)
-    y_test = tf.one_hot(y_test,10)
     print(y_train.shape)
     print(y_test.shape)
     print(y_train[0])
@@ -109,3 +114,5 @@ def Train_fit_run(train_count,label_lists,x_train,y_train,x_test,y_test):
     # 히트맵-혼돈행렬넣어주기
     seaborn.heatmap(cm, cmap="Blues", annot=True, fmt=".1f", xticklabels=label_lists, yticklabels=label_lists)
     plt.show()
+
+
