@@ -28,14 +28,14 @@
         $("#view_menu").on("mouseout",()=>{
           $("#view_menu").css("display","none")
         })
-        let inHtml = ""
-        for (let i=0;i<12;i++){
-          inHtml+= '
+      let inHtml = "";
+      for (let i = 0; i < 12; i++) {
+        inHtml += `
           <div class="content">
-          <div class="top-cont"></div>
-          <div class="bottom-cont"></div>
-        </div>'
-        }
+            <div class="top-cont"></div>
+            <div class="bottom-cont"></div>
+          </div>`;
+      }
         $("#container").html(inHtml)
       })
     </script>
@@ -60,7 +60,14 @@
       <span style="color:blue">author : 이선하</span>
       <span style="color:darkgray"> since : 2024-10-01 ~ </span>
     </footer>
-    <div id="display"></div>
+    <div id="display">
+      <h3 id="sub_title" style="text-align:center;margin:0.8vh 0">모델 구성</h3>
+      <hr style="margin:0 10%;border:2px solid gray;bottom:0.8vh"></hr>
+      <p id="sub_content">전처리 기능으로 이미지 표준화</p>
+      <p id="sub_img">이미지들</p>
+      <p id="user_fill">의견 : min-max표준화를 실행하기 위해<br>
+      색상의 최대크기가 255인걸 감안하여 /255.으로 나눔</p>
+    </div>
   </body>
   <style>
     #display{width:90vw;height:79vh;top:5vh;left:5vw;position:absolute;
