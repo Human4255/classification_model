@@ -28,15 +28,24 @@
         $("#view_menu").on("mouseout",()=>{
           $("#view_menu").css("display","none")
         })
-      let inHtml = "";
-      for (let i = 0; i < 12; i++) {
-        inHtml += `
-          <div class="content">
+        let inHtml = "";
+        for (let i = 0; i < 12; i++) {
+          inHtml += `
+            <div class="content">
             <div class="top-cont"></div>
             <div class="bottom-cont"></div>
-          </div>`;
-      }
+            </div>`;
+          }
         $("#container").html(inHtml)
+        $(".top-cont").click(function(){
+          //$(this)
+          $("#cover").css("display","block")
+          $("#display").css("display","block")
+        })
+        $("#cover").click(function(){
+          $(this).css("display","none")
+          $("#display").css("display","none")
+        })
       })
     </script>
   </head>
@@ -60,18 +69,21 @@
       <span style="color:blue">author : 이선하</span>
       <span style="color:darkgray"> since : 2024-10-01 ~ </span>
     </footer>
+    <div id="cover"></div>
     <div id="display">
       <h3 id="sub_title" style="text-align:center;margin:0.8vh 0">모델 구성</h3>
       <hr style="margin:0 10%;border:2px solid gray;bottom:0.8vh"></hr>
-      <p id="sub_content">전처리 기능으로 이미지 표준화</p>
+      <p id="sub_content" style="height:3vh">전처리 기능으로 이미지 표준화</p>
       <p id="sub_img">이미지들</p>
-      <p id="user_fill">의견 : min-max표준화를 실행하기 위해<br>
+      <p id="user_fill" style="height:3vh;position:relative;bottom:0.5vh;top:59vh">의견 : min-max표준화를 실행하기 위해<br>
       색상의 최대크기가 255인걸 감안하여 /255.으로 나눔</p>
     </div>
   </body>
   <style>
-    #display{width:90vw;height:79vh;top:5vh;left:5vw;position:absolute;
-    background:green}
+    #cover{display:none;z-index:99;margin-left:0.6vw;width:99vw;height:99vh;background:yellow;opacity:0.3;
+    position:absolute;top:0;left:0}
+    #display{display:none;z-index:100;padding:1vh;width:90vw;height:79vh;top:5vh;left:5vw;
+    position:absolute;background:white;border-radius:1vw}
   </style>
 
 </html>
