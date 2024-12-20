@@ -13,7 +13,8 @@
  Crawling/image_crawlling_naver :: 네이버크롤링함수 
     이미지 저장경로, 검색어, 영문검색, 다운로드 개수    
     크롬 드라이버 필요 (https://googlechromelabs.github.io/chrome-for-testing/) Version: 131.0.6778.108  
-    크롬 웹브라우저 필요 Version: 131.0.6778.108 (x64)     
+    크롬 웹브라우저 필요 Version: 131.0.6778.108 (x64)
+    selenium 라이브러리 필요
     
 2. 데이터 증강 및 배경제거
 Preprocessing/preprocessing_running :: main run
