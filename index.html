@@ -11,8 +11,7 @@
       *{margin:0;padding:0}
       #container{height:75vh;width:99vw}
       #mainmenu:hover{cursor:pointer}
-      #view_menu{z-index:100;width:30vw;min-width:27rem;height:95vh;position:fixed;left:0.05
-      vw;top:0.48vw;
+      #view_menu{z-index:100;width:30vw;min-width:27rem;height:95vh;position:fixed;left:0.05vw;top:0.48vw;
       border:2px solid gray;border-style:ridge;box-shadow:2px 2px 2px 2px black;
       border-top-right-radius:2vw;border-bottom-right-radius:2vw;text-align:center;font-size:1.2vw}
       .content{margin:0.5vw;float:left;width:18.5vw;height:15vw;border:1px solid gray;opacity:0.7;border-radius:5px}
@@ -22,9 +21,9 @@
       .bottom-cont{text-align:center;font-size:1vw;height:20%;line-height:300%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
       #sub_img img{margin:0.5vw;width:100%;height:100%}
       #sub_img img:hover{z-index:111;position:absolute;max-width:90%;max-height:80%;left:1.8vw;top:3vw}
-      #display_closer:hover{color:red}
+      #display_closer:hover{color:aqua}
       a{color:blue;text-decoration:none}
-      #ttips{padding-left:1vw;font-size:1vw,color:DarkMagenta;position:absolute;bottom:3vw}
+      #ttips{padding-left:1vw;font-size:0.8vw,color:DarkMagenta;position:absolute;bottom:2.4vw}
     </style>
     <script>
       $(()=>{
@@ -37,10 +36,10 @@
           })
         }
         $("#mainmenu").click(()=>{
-          $("#view_menu").animate({left:"0.1vw"},500)
+          $("#view_menu").animate({left:"0.2vw"},500)
         });
         $("#view_menu").on("mouseenter",function(){
-          $(this).animate({left:"0.1vw"},500,function(){
+          $(this).animate({left:"0.2vw"},500,function(){
             $("#cover").css("display","block");
           });
         });
@@ -93,7 +92,7 @@
     <span id="mainmenu" style="z-index:3;top:1vw;left:0.5vw;font-size:4vw;color:white;position:absolute"
         class="material-symbols-outlined">menu</span>
     <div id="view_menu" style="background:AliceBlue">
-          <span id="menu_closer" class="material-symbols-outlined" style="position:absolute;top:1vw;left:27vw;right:3.7vw;font_size:4vw;z-index:123;
+          <span id="menu_closer" class="material-symbols-outlined" style="position:absolute;top:1vw;left:27vw;right:-0.8vw;font-size:2.6vw;z-index:123;
                  cursor:pointer;">
           close
           </span>
@@ -125,8 +124,8 @@
       <hr style="margin:0 10%;border:2px solid gray;bottom:0.8vh"></hr>
       <p id="sub_content" style="height:3vh"></p>
       <div id="sub_img"></div>
-      <p id="user_fill" style="height:3vh;position:absolute;bottom:3vh"></p>
-      <p id="asso_file" style="height:3vh,position:absolute;bottom:1vh"></p>
+      <p id="user_fill" style="height:3vh;position:absolute;bottom:10vh"></p>
+      <p id="asso_file" style="height:3vh;position:absolute;bottom:2vh"></p>
     </div>
 
     <span id="display_closer" class="material-symbols-outlined" style="position:absolute;top:3.7vw;right:3.7vw;font_size:2.5vw;z-index:123;
@@ -145,7 +144,7 @@
   <script>
     function createImageUrl(thumbnail_id,w=500,width,height){
   return `
-    <p style="float:left;margin-left:0.2vw;${width?('width:'+width + '%;'):"width:100%"} ${height ?('height:' + height + 'vh'):"height:100%" }">
+    <p style="float:left;margin-left:0.2vw;${width?('width:'+width + '%;'):"width:100%"} ;${height ?('height:' + height + 'vh'):"height:100%" }">
       <img src="https://drive.google.com/thumbnail?id=${thumbnail_id}&sz=w${w}" />
     </p>
   `;
