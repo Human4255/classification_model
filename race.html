@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+    <a style="position:absolute;right:1vw" id="backbtn" href="#" ></a>
     <div id="gameContainer">
         <h1 style="text-align: center;font-size:1.5rem"> 경주 게임 월드에 오신것을 환영합니다. <span id="keydiplay"></span></h1>
         <label>게임머니 <input type="number" id="mymoney"></label>
@@ -29,8 +30,8 @@
         </div>
         <p id="game_result" style="height:5vh;float:right;margin-right:10vw"></p>
         <div id="race_stage" style="clear:both;width:99vw;height:90vh;overflow-x: hidden;">
-            <img src="line.png" id="startline" style="position:absolute;left:70px;top:0;height:67%;width:2vw;z-index: 1;">
-            <img src="filine.png" id="finishline" style="position:absolute;right:0;top:0;height:67%;width:8vw;z-index: 1;">
+            <img src='${line_url}' id="startline" style="position:absolute;left:70px;top:0;height:67%;width:2vw;z-index: 1;">
+            <img src='${finish_url}' id="finishline" style="position:absolute;right:0;top:0;height:67%;width:8vw;z-index: 1;">
             <div id="load_stage" style="background-image: url('load.png');">
                 <img class="charactor" src="" id="rabbit" />
                 <img class="charactor" src="" id="tuttle" />
@@ -41,17 +42,26 @@
 </body>
 </html>
 <script>
+    let document.getElementById("backbtn")
+    backbtn.addEventlistener(function(){
+        history.back()
+        return false;
+    })
     tuttle_img_id = "1fSJnzYC4wDRpacNw-DARBBJblJKnkl6q"
     rabbit_img_id = "1Z3s-oNGlEkCotVNn_g7hgPhNx2PRdZ0J"
     chicken_img_id = "17h13w75lWM82r1cosIEHsybwnd29VMRK"
     load_img_id = "12fQXdZ6Se838QPwaPbFGWMbqCK9xexU7"
     tree_img_id = "1ocYOISD4UZ8FZx1Arjinxn3NjjlbwW47"
+    line_img_id = "1Bt8HhZtTT_F5jX-Z8jOMk4i05PZcsSqF"
+    finish_img_id = "1nep7cxECW5bU1Yn5y70rIg5W0kr8nvOH"
 
     tuttle_url = `https://drive.google.com/thumbnail?id=${tuttle_img_id}&sz=w${200}`
     rabbit_url = `https://drive.google.com/thumbnail?id=${rabbit_img_id}&sz=w${200}`
     chicken_url = `https://drive.google.com/thumbnail?id=${chicken_img_id}&sz=w${200}`
     load_url = `https://drive.google.com/thumbnail?id=${load_img_id}&sz=w${500}`
     tree_url = `https://drive.google.com/thumbnail?id=${tree_img_id}&sz=w${400}`
+    line_url = `https://drive.google.com/thumbnail?id=${line_img_id}&sz=w${400}`
+    finish_url = `https://drive.google.com/thumbnail?id=${finish_img_id}&sz=w${400}`
 
     let race_fix_money=100
     let first_sc =  race_fix_money*2
