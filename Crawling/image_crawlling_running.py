@@ -1,4 +1,5 @@
 import os
+import selenium
 from image_crawlling_naver import get_naver
 from image_crawlling_google import get_Google
 
