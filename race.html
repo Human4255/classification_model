@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <a style="position:absolute;right:1vw" id="backbtn" href="#" ></a>
+    <a style="position:absolute;right:1vw" id="backbtn" href="#" >이전으로</a>
     <div id="gameContainer">
         <h1 style="text-align: center;font-size:1.5rem"> 경주 게임 월드에 오신것을 환영합니다. <span id="keydiplay"></span></h1>
         <label>게임머니 <input type="number" id="mymoney"></label>
@@ -43,7 +43,7 @@
 </html>
 <script>
     let backbtn=document.getElementById("backbtn")
-    backbtn.addEventlistener(function(){
+    backbtn.addEventListener(function(){
         history.back()
         return false;
     })
