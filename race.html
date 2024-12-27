@@ -30,8 +30,8 @@
         </div>
         <p id="game_result" style="height:5vh;float:right;margin-right:10vw"></p>
         <div id="race_stage" style="clear:both;width:99vw;height:90vh;overflow-x: hidden;">
-            <img src='${line_url}' id="startline" style="position:absolute;left:70px;top:0;height:67%;width:2vw;z-index: 1;">
-            <img src='${finish_url}' id="finishline" style="position:absolute;right:0;top:0;height:67%;width:8vw;z-index: 1;">
+            <img src='' id="startline" style="position:absolute;left:70px;top:0;height:67%;width:2vw;z-index: 1;">
+            <img src='' id="finishline" style="position:absolute;right:0;top:0;height:67%;width:8vw;z-index: 1;">
             <div id="load_stage" style="background-image: url('load.png');">
                 <img class="charactor" src="" id="rabbit" />
                 <img class="charactor" src="" id="tuttle" />
@@ -47,6 +47,7 @@
         history.back()
         return false;
     })
+
     tuttle_img_id = "1fSJnzYC4wDRpacNw-DARBBJblJKnkl6q"
     rabbit_img_id = "1Z3s-oNGlEkCotVNn_g7hgPhNx2PRdZ0J"
     chicken_img_id = "17h13w75lWM82r1cosIEHsybwnd29VMRK"
@@ -63,6 +64,10 @@
     line_url = `https://drive.google.com/thumbnail?id=${line_img_id}&sz=w${400}`
     finish_url = `https://drive.google.com/thumbnail?id=${finish_img_id}&sz=w${400}`
 
+    let finishline=document.getElementById("finishline")
+    finishline.src = finish_url
+    let startline=document.getElementById("startline")
+    startline.src = line_url
     let race_fix_money=100
     let first_sc =  race_fix_money*2
     let second_sc = race_fix_money
